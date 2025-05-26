@@ -1,16 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import counter from "./features/counter.slice";
-import token from "./features/token.slice";
-import saved from "./features/saved.slice";
-import electronics from "./features/eletronics.slice";
+import studentSlice from "./features/student.slice";
 export const store = configureStore({
    reducer: {
-      electronics,
-      counter,
-      token,
-      saved,
-      // wishlist,
-      // cart,
+      studentSlice,
    },
 });
 

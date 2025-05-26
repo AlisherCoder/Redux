@@ -12,11 +12,11 @@ const MainRouters = () => {
          element: <Layout />,
          children: [
             {
-               path: "/",
+               path: "/form",
                element: <Home />,
             },
             {
-               path: "/form",
+               path: "/",
                element: <Form />,
             },
             {

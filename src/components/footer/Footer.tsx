@@ -1,4 +1,5 @@
 import React from "react";
+import Modal from "../modal/Modal";
 
 // interface Props {
 //    title: string;
@@ -9,7 +10,12 @@ import React from "react";
 // }
 
 const Footer = () => {
-   return <div>Footer</div>;
+   return (
+      <div>
+         Footer
+         <Modal />
+      </div>
+   );
 };
 
 export default React.memo(Footer);

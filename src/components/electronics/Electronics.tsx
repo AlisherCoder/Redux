@@ -1,9 +1,9 @@
 import React, { FC } from "react";
-import { IElectronic } from "../../types";
+import { IStudent } from "../../types";
 import ImgMediaCard from "../card/Card";
 
 interface Props {
-   data: IElectronic[] | undefined;
+   data: IStudent[] | undefined;
 }
 
 const Electronics: FC<Props> = ({ data }) => {

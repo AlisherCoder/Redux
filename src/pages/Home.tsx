@@ -14,11 +14,11 @@ const Home = () => {
 
    // const dispatch = useDispatch();
 
-   const eletronics = useSelector((state: RootState) => state.electronics);
+   const students = useSelector((state: RootState) => state.studentSlice);
 
    return (
       <div>
-         <Electronics data={eletronics.value} />
+         <Electronics data={students.value} />
       </div>
    );
 };

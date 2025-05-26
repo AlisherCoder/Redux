@@ -25,3 +25,14 @@ export interface IElectronic {
    id?: number;
    image?: string;
 }
+
+export interface IStudent {
+   id?: number;
+   fname: string;
+   lname?: string;
+   age: number;
+   username: string;
+   password: string;
+   phonenumber?: string;
+   image?: string;
+}

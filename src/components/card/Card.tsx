@@ -4,13 +4,13 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { FC, ReactNode } from "react";
+import React, { FC, ReactNode } from "react";
 import { useDispatch } from "react-redux";
-import { addWishlist, remove } from "../../redux/features/eletronics.slice";
-import { IElectronic } from "../../types";
+import { IStudent } from "../../types";
+import { remove } from "../../redux/features/student.slice";
 
 interface Props {
-   item: IElectronic;
+   item: IStudent;
    children?: ReactNode;
 }
 
@@ -20,32 +20,39 @@ const ImgMediaCard: FC<Props> = ({ item }) => {
    return (
       <>
          <Card sx={{ maxWidth: 345 }}>
-            <CardMedia component='img' alt='green iguana' height='140' image={item.image} />
-            <CardContent>
-               <Typography gutterBottom variant='h5' component='div'>
-                  {item.name}
-               </Typography>
-               <Typography gutterBottom variant='h5' component='div'>
-                  $ {item.price}
-               </Typography>
-               <Typography variant='body2' sx={{ color: "text.secondary" }}>
-                  {item.count}
-               </Typography>
-            </CardContent>
-            <CardActions>
-               <Button onClick={() => dispatch(addWishlist(item))} size='small'>
-                  Saved
-               </Button>
-               <Button color='success' size='small'>
-                  Edit
-               </Button>
-               <Button onClick={() => dispatch(remove(item.id))} color='error' size='small'>
-                  Delete
-               </Button>
-            </CardActions>
+            <CardMedia
+               className='p-2'
+               component='img'
+               alt='green iguana'
+               height='140'
+               image={item.image}
+            />
+            <div className='flex flex-col'>
+               <CardContent>
+                  <Typography gutterBottom variant='h5' component='div'>
+                     {item.fname}
+                  </Typography>
+                  <Typography gutterBottom variant='h5' component='div'>
+                     {item?.lname}
+                  </Typography>
+                  <Typography variant='body2'>{item.age}</Typography>
+                  <Typography variant='body2'>{item.username}</Typography>
+                  <Typography variant='body2'>{item.phonenumber}</Typography>
+               </CardContent>
+               <CardActions>
+                  <div className='ml-auto'>
+                     <Button color='success' size='small'>
+                        Edit
+                     </Button>
+                     <Button onClick={() => dispatch(remove(item.id))} color='error' size='small'>
+                        Delete
+                     </Button>
+                  </div>
+               </CardActions>
+            </div>
          </Card>
       </>
    );
 };
 
-export default ImgMediaCard;
+export default React.memo(ImgMediaCard);
