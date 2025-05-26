@@ -1,17 +1,10 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { RootState } from "../redux";
-import Electronics from "../components/electronics/Electronics";
 
 const Saved = () => {
-   const wishlistData = useSelector((state: RootState) => state.electronics.wishlist);
-   console.log(wishlistData);
+   // const wishlistData = useSelector((state: RootState) => state.wishlist);
+   // console.log(wishlistData);
 
-   return (
-      <div>
-         <Electronics data={wishlistData} />
-      </div>
-   );
+   return <div>Saved</div>;
 };
 
 export default React.memo(Saved);
