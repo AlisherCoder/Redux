@@ -26,13 +26,11 @@ export interface IElectronic {
    image?: string;
 }
 
-export interface IStudent {
-   id?: number;
+export interface IUser {
+   id: number;
    fname: string;
-   lname?: string;
+   lname: string;
    age: number;
-   username: string;
-   password: string;
-   phonenumber?: string;
-   image?: string;
+   image: string;
+   city: string;
 }

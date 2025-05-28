@@ -5,46 +5,71 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import React, { FC, ReactNode } from "react";
-import { useDispatch } from "react-redux";
-import { IStudent } from "../../types";
-import { remove } from "../../redux/features/student.slice";
+import { IUser } from "../../types";
+import { useDeleteUserMutation } from "../../redux/api/user.api";
+import { message } from "antd";
 
 interface Props {
-   item: IStudent;
+   item: IUser;
    children?: ReactNode;
 }
 
 const ImgMediaCard: FC<Props> = ({ item }) => {
-   const dispatch = useDispatch();
+   const [deleteUser, { isLoading }] = useDeleteUserMutation();
+
+   const handleDelete = (id: number) => {
+      deleteUser(id)
+         .unwrap()
+         .then(() => succes());
+   };
+
+   const [messageApi, contextHolder] = message.useMessage();
+
+   const succes = () => {
+      messageApi.open({
+         type: "success",
+         content: "Deleted user successfully",
+      });
+   };
 
    return (
       <>
+         {contextHolder}
          <Card sx={{ maxWidth: 345 }}>
             <CardMedia
-               className='p-2'
                component='img'
                alt='green iguana'
                height='140'
                image={item.image}
+               loading='lazy'
             />
-            <div className='flex flex-col'>
+            <div className=''>
                <CardContent>
                   <Typography gutterBottom variant='h5' component='div'>
                      {item.fname}
                   </Typography>
+
                   <Typography gutterBottom variant='h5' component='div'>
                      {item?.lname}
                   </Typography>
-                  <Typography variant='body2'>{item.age}</Typography>
-                  <Typography variant='body2'>{item.username}</Typography>
-                  <Typography variant='body2'>{item.phonenumber}</Typography>
+
+                  <Typography variant='body2'>{item.age} years old</Typography>
+
+                  <Typography variant='body1'>{item.city}</Typography>
                </CardContent>
+
                <CardActions>
                   <div className='ml-auto'>
                      <Button color='success' size='small'>
                         Edit
                      </Button>
-                     <Button onClick={() => dispatch(remove(item.id))} color='error' size='small'>
+
+                     <Button
+                        onClick={() => handleDelete(item.id)}
+                        loading={isLoading}
+                        color='error'
+                        size='small'
+                     >
                         Delete
                      </Button>
                   </div>

@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import studentSlice from "./features/student.slice";
+import { mainApi } from "./api";
+
 export const store = configureStore({
    reducer: {
-      studentSlice,
+      [mainApi.reducerPath]: mainApi.reducer,
    },
+   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(mainApi.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

@@ -1,10 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IStudent } from "../../types";
+import { IUser } from "../../types";
 
 const students = localStorage.getItem("data");
 
 export interface StudentState {
-   value: IStudent[];
+   value: IUser[];
 }
 
 const initialState: StudentState = {
@@ -15,7 +15,7 @@ export const studentSlice = createSlice({
    name: "students",
    initialState,
    reducers: {
-      create: (state, action: PayloadAction<IStudent>) => {
+      create: (state, action: PayloadAction<IUser>) => {
          state.value.push(action.payload);
 
          localStorage.setItem("data", JSON.stringify(state.value));

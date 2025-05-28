@@ -1,7 +1,6 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { RootState } from "../redux";
-import Electronics from "../components/electronics/Electronics";
+import Electronics from "../components/rendering/users";
+import { useGetUsersQuery } from "../redux/api/user.api";
 
 const Home = () => {
    // const [data, setData] = useState<null | IPayload>(null);
@@ -14,11 +13,13 @@ const Home = () => {
 
    // const dispatch = useDispatch();
 
-   const students = useSelector((state: RootState) => state.studentSlice);
+   // const students = useSelector((state: RootState) => state.studentSlice);
+
+   const { data } = useGetUsersQuery({ order: "asc" });
 
    return (
       <div>
-         <Electronics data={students.value} />
+         <Electronics data={data} />
       </div>
    );
 };
